@@ -9,25 +9,27 @@ function App() {
     projects: [],
   });
 
-  //to obtain data input from new project
-  function handleAddProject(projectData) {
-    setProjectsState((prevState) => {
-      const newProject = {
-        ...projectData,
-        id: Math.random(),
-      };
-      return {
-        ...prevState,
-        projects: [...prevState.projects, newProject],
-      };
-    });
-  }
-
   function handlesStartAddProject() {
     setProjectsState((prevState) => {
       return {
         ...prevState,
         selectedProjectId: null,
+      };
+    });
+  }
+
+  //to obtain data input from new project
+  function handleAddProject(projectData) {
+    setProjectsState((prevState) => {
+      const projectId = Math.random();
+      const newProject = {
+        ...projectData,
+        id: projectId,
+      };
+      return {
+        ...prevState,
+        selectedProjectId: undefined, //new project and close input form
+        projects: [...prevState.projects, newProject],
       };
     });
   }
@@ -41,7 +43,10 @@ function App() {
 
   return (
     <main className="h-screen my-8 flex gap-8">
-      <ProjectSidebar onStartAddProject={handlesStartAddProject} />
+      <ProjectSidebar
+        onStartAddProject={handlesStartAddProject}
+        projects={projectsState.projects}
+      />
       {content}
     </main>
   );
