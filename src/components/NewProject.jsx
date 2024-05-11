@@ -3,11 +3,11 @@ import { useRef } from "react";
 
 import Modal from "./Modal";
 
-export default function NewProject({ onAdd }) {
+export default function NewProject({ onAdd, onCancel }) {
   const titleRef = useRef();
   const descrRef = useRef();
   const dueDateRef = useRef();
-  //Ref for Modal
+  //useRef for Modal
   const modalRef = useRef();
 
   const handleSubmit = () => {
@@ -35,16 +35,19 @@ export default function NewProject({ onAdd }) {
   return (
     <>
       <Modal ref={modalRef} buttonCaption="Close">
-        <h2>Invalid Input</h2>
-        <p>Please check your input values</p>
-        <p>
+        <h2 className="text-xl font-bold text-stone-700 my-4">Invalid Input</h2>
+        <p className="text-stone-600 mb-4">Please check your input values</p>
+        <p className="text-stone-600 mb-4">
           Make sure you enter at least a title, a description and a due date
         </p>
       </Modal>
       <div className="w-[35rem] mt-16">
         <menu className="flex items-center justify-end gap-4 my-4">
           <li>
-            <button className="text-stone-800 hover:text-stone-950">
+            <button
+              className="text-stone-800 hover:text-stone-950"
+              onClick={onCancel}
+            >
               Cancel
             </button>
           </li>
