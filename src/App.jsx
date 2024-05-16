@@ -43,22 +43,6 @@ function App() {
     });
   }
 
-  const selectedProject = projectsState.projects.find(
-    (project) => project.id === projectsState.selectedProjectId,
-  );
-
-  let content = <SelectedProject project={selectedProject} />;
-
-  if (projectsState.selectedProjectId === null) {
-    content = (
-      <NewProject
-        onAdd={handleAddProject}
-        onCancel={handleCancelAddingProject}
-      />
-    );
-  } else if (projectState.SelectedId === undefined) {
-    content = <NoProjectSelected onStartAddProject={handlesStartAddProject} />;
-  }
   //function for displaying project details from ProjectSidebar
   function handleSelectProject(id) {
     setProjectsState((prevState) => {
@@ -68,6 +52,38 @@ function App() {
       };
     });
   }
+  //function to delete project in selectedProject
+  const handleDeleteProject = () => {
+    setProjectsState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: undefined,
+        projects: prevState.projects.filter(
+          (project) => project.id !== prevState.selectedProjectId,
+        ),
+      };
+    });
+  };
+
+  const selectedProject = projectsState.projects.find(
+    (project) => project.id === projectsState.selectedProjectId,
+  );
+
+  let content = (
+    <SelectedProject project={selectedProject} onDelete={handleDeleteProject} />
+  );
+
+  if (projectsState.selectedProjectId === null) {
+    content = (
+      <NewProject
+        onAdd={handleAddProject}
+        onCancel={handleCancelAddingProject}
+      />
+    );
+  } else if (projectsState.SelectedId === undefined) {
+    content = <NoProjectSelected onStartAddProject={handlesStartAddProject} />;
+  }
+
   return (
     <main className="h-screen my-8 flex gap-8">
       <ProjectSidebar
