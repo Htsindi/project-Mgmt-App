@@ -25,6 +25,7 @@ export default function ProjectSidebar({
           }
           return (
             <li key={project.id}>
+              console.log(project.id, selectedProjectId);
               <button
                 onClick={() => onSelectProject(project.id)}
                 className={cssClasses}

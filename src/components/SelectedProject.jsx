@@ -1,6 +1,12 @@
-import React from "react";
+import Tasks from "./Tasks";
 
-const SelectedProject = function ({ project, onDelete }) {
+export default function ({
+  project,
+  onDelete,
+  onAddTask,
+  onDeleteTask,
+  tasks,
+}) {
   const formattedDate = new Date(project.dueDate).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -25,9 +31,11 @@ const SelectedProject = function ({ project, onDelete }) {
           {project.description}
         </p>
       </header>
-      TASKS
+      <Tasks
+        onAddTaskProp={onAddTask}
+        onDeleteTaskProp={onDeleteTask}
+        tasks={tasks}
+      />
     </div>
   );
-};
-
-export default SelectedProject;
+}
