@@ -4,23 +4,23 @@ import Input from "./Input.jsx";
 import Modal from "./Modal.jsx";
 
 export default function NewProject({ onAdd, onCancel }) {
-  const modal = useRef();
+  const modalRef = useRef();
 
-  const title = useRef();
-  const description = useRef();
-  const dueDate = useRef();
+  const titleRef = useRef();
+  const descriptionRef = useRef();
+  const dueDateRef = useRef();
 
   function handleSave() {
-    const enteredTitle = title.current.value;
-    const enteredDescription = description.current.value;
-    const enteredDueDate = dueDate.current.value;
+    const enteredTitle = titleRef.current.value;
+    const enteredDescription = descriptionRef.current.value;
+    const enteredDueDate = dueDateRef.current.value;
 
     if (
       enteredTitle.trim() === "" ||
       enteredDescription.trim() === "" ||
       enteredDueDate.trim() === ""
     ) {
-      modal.current.open();
+      modalRef.current.open();
       return;
     }
 
@@ -33,7 +33,7 @@ export default function NewProject({ onAdd, onCancel }) {
 
   return (
     <>
-      <Modal ref={modal} buttonCaption="Okay">
+      <Modal ref={modalRef} buttonCaption="Okay">
         <h2 className="text-xl font-bold text-stone-700 my-4">Invalid Input</h2>
         <p className="text-stone-600 mb-4">
           Oops ... looks like you forgot to enter a value.
@@ -62,9 +62,9 @@ export default function NewProject({ onAdd, onCancel }) {
           </li>
         </menu>
         <div>
-          <Input type="text" ref={title} label="Title" />
-          <Input ref={description} label="Description" textarea />
-          <Input type="date" ref={dueDate} label="Due Date" />
+          <Input type="text" ref={titleRef} label="Title" />
+          <Input ref={descriptionRef} label="Description" textarea />
+          <Input type="date" ref={dueDateRef} label="Due Date" />
         </div>
       </div>
     </>
