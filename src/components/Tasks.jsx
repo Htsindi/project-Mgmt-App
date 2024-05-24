@@ -1,4 +1,3 @@
-import Button from "./Button";
 import NewTask from "./NewTask.jsx";
 
 const Tasks = ({ tasks, onAddTask, onDeleteTask }) => {

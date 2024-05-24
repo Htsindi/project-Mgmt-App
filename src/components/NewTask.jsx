@@ -8,6 +8,8 @@ const NewTask = ({ onAdd }) => {
   }
 
   function handleClick() {
+    // Prevent form from submitting empty task
+    if (!newTask) return;
     onAdd(newTask);
     setNewTask("");
   }

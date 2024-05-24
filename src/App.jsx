@@ -121,6 +121,8 @@ function App() {
         onStartAddProject={handleStartAddProject}
         projects={projectsState.projects}
         onSelectProject={handleSelectProject}
+        //to highlight selected project
+        selectedProjectId={projectsState.selectedProjectId}
       />
       {content}
     </main>
